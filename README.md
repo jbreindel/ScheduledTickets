@@ -86,4 +86,27 @@ this line needs to be placed in nav to make a link in your nav bar:
 
 <code>$subnav[]=array('desc'=>'Scheduled Tickets','href'=>'scheduled.php','iconclass'=>'scheduled');</code>
 
-	
+Here is the table structure for the scheduled tickets table:
+
+<pre>
+CREATE TABLE IF NOT EXISTS `ost_scheduled_tickets` (
+  `scheduled_id` int(11) NOT NULL AUTO_INCREMENT,
+  `priority_id` int(10) NOT NULL,
+  `topic_id` int(10) NOT NULL,
+  `staff_id` int(10) NOT NULL,
+  `team_id` int(10) NOT NULL,
+  `username` varchar(128) NOT NULL,
+  `source` varchar(20) NOT NULL,
+  `url` varchar(255) NOT NULL,
+  `subject` varchar(64) NOT NULL,
+  `body` text NOT NULL,
+  `notifications` enum('all','assigned','none') NOT NULL,
+  `startdate` datetime NOT NULL,
+  `duedate` datetime NOT NULL,
+  `isrecurring` int(1) NOT NULL DEFAULT '0',
+  `granularity_interval` enum('hour','day','week','month','year') NOT NULL,
+  `time_interval` int(11) NOT NULL,
+  `updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`scheduled_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;</pre>
