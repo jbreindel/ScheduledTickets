@@ -73,6 +73,8 @@ Here are supported variables for both the subject line of the ticket and Body pa
 
 p.s. you can have ajax.content.php return the above HTML code to have a pop over in the scheduled.inc.php Supported Variables link.
 
+<h2>File Placement</h2>
+
 Here is where all the files in this project should be placed in your osTicket installation:
 
 <code>/php/scheduled.php				->	/scp/scheduled.php</code><br />
@@ -85,6 +87,8 @@ Here is where all the files in this project should be placed in your osTicket in
 this line needs to be placed in nav to make a link in your nav bar:
 
 <code>$subnav[]=array('desc'=>'Scheduled Tickets','href'=>'scheduled.php','iconclass'=>'scheduled');</code>
+
+<h2>Table Structure</h2>
 
 Here is the table structure for the scheduled tickets table:
 
