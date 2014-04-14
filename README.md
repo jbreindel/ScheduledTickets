@@ -49,3 +49,26 @@ add these functions to your class.client.php:
 	}
 	
 </code>
+
+Here are supported variables for both the subject line of the ticket and Body part of the ticket:
+
+<div style="width:300px;">
+    <h2>Scheduled Ticket Variables</h2>
+    Listed are variables used in Scheduled Tickets
+    <br/>
+    <table width="100%" border="0" cellspacing=1 cellpadding=2>
+        <tr><td valign="top"><b>Base Variables</b></td></tr>
+        <tr>
+            <td width="55%" valign="top">
+                <table width="100%" border="0" cellspacing=1 cellpadding=1>
+                    <tr><td width="130">%{assigned}</td><td>Staff or team name</td></tr>
+                    <tr><td>%{recipient}</td><td>Full name on ticket</td></tr>
+                    <tr><td>%{date}</td><td>Date created</td></tr>
+                    <tr><td>%{due}</td><td>Due date</td></tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>
+
+p.s. you can have ajax.content.php return the above HTML code to have a pop over in the scheduled.inc.php Supported Variables link.
