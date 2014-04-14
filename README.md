@@ -3,7 +3,7 @@ ScheduledTickets
 
 Scripts to have Tickets be scheduled for sometime in the future or recur every so often. To have tickets recur run the script at <code>php/inc/scheduled.cron.php</code> every 30 minutes using cron with the following syntax:
 
-<code>0,30 * * * * php {PATH TO CRON} > /tmp/phpjob.txt 2>&1</code>
+<code>0,30 * * * * php {PATH TO SCHEDULED.CRON.PHP} > /tmp/phpjob.txt 2>&1</code>
 
 This will run through all the scheduled tickets and determine if they should be ran and then handle them accordingly.  
 
