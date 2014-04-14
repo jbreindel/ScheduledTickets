@@ -23,14 +23,14 @@ if(!defined('PATH_SEPARATOR')){
 }
 
 #Define the pear directory
-define("INCLUDE_DIR", "/htdocs/live/webservices/workorders/include/");
+define("INCLUDE_DIR", "/htdocs/live/osTicket/include/");
 define("PEAR_DIR", INCLUDE_DIR."pear/");
 #Mysql Login info
 define('DBTYPE','mysql');
 define('DBHOST','localhost'); 
-define('DBNAME','webservices_workorders');
-define('DBUSER','prvweb');
-define('DBPASS','YNdzA3tMMDtVtNG7');
+define('DBNAME','osTicket');
+define('DBUSER','xxxxx');
+define('DBPASS','xxxx');
 #Table names
 define('SCHEDULED_TABLE', 'ost_scheduled_tickets');
 define('CONFIG_TABLE', 'ost_config');
@@ -43,14 +43,14 @@ define('GROUP_TABLE', 'ost_groups');
 define('TICKET_THREAD_TABLE', 'ost_ticket_thread');
 define('TICKET_EVENT_TABLE', 'ost_ticket_event');
 #Ticket information
-define('HOME_URL', 'http://webservices.buffalo.edu/workorders/');
+define('HOME_URL', 'http://example.com/tickets/');
 define('WEB_SERVICES_DEPT_ID', 3);
 define('SLA_ID', 1);
 define('DATE_FORMAT_STRING', 'm/d/y g:ia');
 define('EXT_TICKET_ID_LEN',6);
 
 //Set include paths. Overwrite the default paths.
-ini_set('include_path', '/htdocs/live/webservices/workorders/'.PATH_SEPARATOR.INCLUDE_DIR.PATH_SEPARATOR.PEAR_DIR);
+ini_set('include_path', '/htdocs/live/osTicket/include/'.PATH_SEPARATOR.INCLUDE_DIR.PATH_SEPARATOR.PEAR_DIR);
 
 // Config class
 require_once(INCLUDE_DIR.'class.timezone.php');
