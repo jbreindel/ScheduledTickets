@@ -7,6 +7,8 @@ Scripts to have Tickets be scheduled for sometime in the future or recur every s
 
 This will run through all the scheduled tickets and determine if they should be ran and then handle them accordingly.  
 
+<h2>Client and Staff Reqs</h2>
+
 add these functions to your class.client.php:
 
 	static function lookupClientByEmail($email){
