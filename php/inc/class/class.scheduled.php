@@ -176,7 +176,7 @@ class Scheduled {
 		$assocArray['startdate'] = $this->startdate?(Format::userdate('m/d/Y', Misc::db2gmtime($this->startdate))):'';
 		$assocArray['starttime'] = $this->startdate?(Format::userdate('G:i', Misc::db2gmtime($this->startdate))):'';
 		$assocArray['duedate'] = $this->duedate?(Format::userdate('m/d/Y', Misc::db2gmtime($this->duedate))):'';
-        $assocArray['duetime'] = $this->duedate?(Format::userdate('G:i', Misc::db2gmtime($this->duedate))):'';
+        	$assocArray['duetime'] = $this->duedate?(Format::userdate('G:i', Misc::db2gmtime($this->duedate))):'';
 		$assocArray['notifications'] = $this->notifications;
 		$assocArray['isrecurring'] = $this->isrecurring;
 		$assocArray['interval'] = $this->interval;
