@@ -44,7 +44,7 @@ define('TICKET_THREAD_TABLE', 'ost_ticket_thread');
 define('TICKET_EVENT_TABLE', 'ost_ticket_event');
 #Ticket information
 define('HOME_URL', 'http://example.com/tickets/');
-define('WEB_SERVICES_DEPT_ID', 3);
+define('DEPT_ID', 3);
 define('SLA_ID', 1);
 define('DATE_FORMAT_STRING', 'm/d/y g:ia');
 define('EXT_TICKET_ID_LEN',6);
