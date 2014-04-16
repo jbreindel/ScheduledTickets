@@ -444,16 +444,14 @@ class Scheduled {
 			$difference = $now->diff($start);
 		
 			// return if the time is within the minute
-			return $difference->y == 0 && 
-		       	$difference->m == 0 && 
-		       	$difference->d == 0 &&
-		       	$difference->h == 0 &&
-		       	$difference->i == 0 &&
-		       	$difference->s <= 59;
+			return $this->withinMinute($difference);
 			
 		}
 		// ELSE this is a recurring ticket
 		else{
+			
+			// reference now
+			$now = new DateTime();
 			
 			// determine the interval between the two times
 			$difference = $now->diff($start);
@@ -466,12 +464,7 @@ class Scheduled {
 				
 			}
 			// IF we're on the start date
-			elseif($difference->y == 0 && 
-		       $difference->m == 0 && 
-		       $difference->d == 0 &&
-		       $difference->h == 0 &&
-		       $difference->i == 0 &&
-		       $difference->s <= 59){
+			elseif($this->withinMinute($difference)){
 				
 				// we're on
 				return true;
@@ -482,6 +475,7 @@ class Scheduled {
 				
 				// clone the start time
 				$recurrance = clone $start;
+				
 				// get the recurrance interval
 				$interval = $this->recurranceInterval();
 			
@@ -494,24 +488,48 @@ class Scheduled {
 					// add the interval to the date time
 					$recurrance->add($interval);
 					
+					// reference now
+					$now = new DateTime();
+					
 					// difference between now and recurrance
 					$difference = $now->diff($recurrance);
 					
-					// IF we past the date
-					if($difference->invert == 0){
+					echo "<pre>";
+					print_r($difference);
+					echo "</pre>";
+					
+					// IF we're on the start date
+					if($this->withinMinute($difference)){
 						
-						// return if the time is within the minute
-						return $difference->y == 0 && 
-		       		   		   $difference->m == 0 && 
-		       		   		   $difference->d == 0 &&
-		       		   		   $difference->h == 0 &&
-		       		   		   $difference->i == 0 &&
-		       		   		   $difference->s <= 59;
+						// run
+						return true;
 						
+					}
+					// ELSE IF we're past the date
+					else if($difference->invert == 0){
+						
+						// don't run
+						return false;
 					}
 				}	
 			}
 		}
+	}
+
+	/**
+	 * @return	boolean		returns true or false if the interval is within the minute
+	 * 
+	 * It is important to note when computing differences with now and and a date,
+	 * You should always "refresh" now because of the invert property has a lot of
+	 * meaning to the above function. 
+	 */
+	private function withinMinute($difference){
+		return ($difference->y == 0 && 
+		       	$difference->m == 0 && 
+		       	$difference->d == 0 &&
+		       	$difference->h == 0 &&
+		       	$difference->i == 0 &&
+		       	$difference->s <= 59);
 	}
 
 	/**
