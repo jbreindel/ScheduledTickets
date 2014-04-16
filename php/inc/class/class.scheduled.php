@@ -610,7 +610,7 @@ class Scheduled {
 					".TICKET_TABLE."
 				SET
 					 ticketID = ".db_input(self::genExtRandID())."
-					,dept_id = ".db_input(WEB_SERVICES_DEPT_ID)."
+					,dept_id = ".db_input(DEPT_ID)."
 					,sla_id = ".db_input(SLA_ID)."
 					,priority_id = ".db_input($this->getPriorityId())."
 					,topic_id = ".db_input($this->getTopicId())."
