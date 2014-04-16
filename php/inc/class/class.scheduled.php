@@ -701,7 +701,7 @@ class Scheduled {
 		To view more about this ticket please click the following link:
 			
 		".HOME_URL."scp/tickets.php?id=".$id;
-		$from = "AutoTicketGenerator@buffalo.edu";
+		$from = "AutoTicketGenerator@example.com";
 				
 		// SWITCH on the notifications
 		switch($this->getNotifications()){
