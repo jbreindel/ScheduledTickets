@@ -497,10 +497,6 @@ class Scheduled {
 					// difference between now and recurrance
 					$difference = $now->diff($recurrance);
 					
-					echo "<pre>";
-					print_r($difference);
-					echo "</pre>";
-					
 					// IF we past the date
 					if($difference->invert == 1){
 						
@@ -538,7 +534,7 @@ class Scheduled {
 	public function putTicketIntoDatabse(){
 		
 		// reference the email address
-		$email = $this->getUsername()."@buffalo.edu";
+		$email = $this->getUsername()."@example.com";
 		
 		// IF we can get the staff ID by username
 		if(Staff::isCreated($email)){
