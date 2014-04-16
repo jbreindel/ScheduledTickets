@@ -176,7 +176,7 @@ class Scheduled {
 		$assocArray['startdate'] = $this->startdate?(Format::userdate('m/d/Y', Misc::db2gmtime($this->startdate))):'';
 		$assocArray['starttime'] = $this->startdate?(Format::userdate('G:i', Misc::db2gmtime($this->startdate))):'';
 		$assocArray['duedate'] = $this->duedate?(Format::userdate('m/d/Y', Misc::db2gmtime($this->duedate))):'';
-        	$assocArray['duetime'] = $this->duedate?(Format::userdate('G:i', Misc::db2gmtime($this->duedate))):'';
+        $assocArray['duetime'] = $this->duedate?(Format::userdate('G:i', Misc::db2gmtime($this->duedate))):'';
 		$assocArray['notifications'] = $this->notifications;
 		$assocArray['isrecurring'] = $this->isrecurring;
 		$assocArray['interval'] = $this->interval;
@@ -400,12 +400,12 @@ class Scheduled {
 			break;
 				
 			case "month":
-				// set the interval in weeks
+				// set the interval in months
 				$interval->m = $this->getTimeInterval();
 			break;
 				
 			case "year":
-				// set the interval in weeks
+				// set the interval in years
 				$interval->y = $this->getTimeInterval();
 			break;
 				
@@ -441,37 +441,37 @@ class Scheduled {
 		if($this->isRecurring() == 0){
 		
 			// determine the interval between the two times
-			$interval = $now->diff($start);
+			$difference = $now->diff($start);
 		
 			// return if the time is within the minute
-			return $interval->y == 0 && 
-		       	$interval->m == 0 && 
-		       	$interval->d == 0 &&
-		       	$interval->h == 0 &&
-		       	$interval->i == 0 &&
-		       	$interval->s <= 59;
+			return $difference->y == 0 && 
+		       	$difference->m == 0 && 
+		       	$difference->d == 0 &&
+		       	$difference->h == 0 &&
+		       	$difference->i == 0 &&
+		       	$difference->s <= 59;
 			
 		}
 		// ELSE this is a recurring ticket
 		else{
 			
 			// determine the interval between the two times
-			$interval = $now->diff($start);
+			$difference = $now->diff($start);
 			
 			// IF we're before the start date
-			if($interval->invert == 0){
+			if($difference->invert == 0){
 				
 				// too early
 				return false;
 				
 			}
 			// IF we're on the start date
-			elseif($interval->y == 0 && 
-		       $interval->m == 0 && 
-		       $interval->d == 0 &&
-		       $interval->h == 0 &&
-		       $interval->i == 0 &&
-		       $interval->s <= 59){
+			elseif($difference->y == 0 && 
+		       $difference->m == 0 && 
+		       $difference->d == 0 &&
+		       $difference->h == 0 &&
+		       $difference->i == 0 &&
+		       $difference->s <= 59){
 				
 				// we're on
 				return true;
@@ -493,26 +493,24 @@ class Scheduled {
 				
 					// add the interval to the date time
 					$recurrance->add($interval);
+					
 					// difference between now and recurrance
-					$interval = $now->diff($recurrance);
+					$difference = $now->diff($recurrance);
+					
+					echo "<pre>";
+					print_r($difference);
+					echo "</pre>";
 					
 					// IF we past the date
-					if($interval->invert == 1){
+					if($difference->invert == 1){
 						
 						// return if the time is within the minute
-						return $interval->y == 0 && 
-		       		   		   $interval->m == 0 && 
-		       		   		   $interval->d == 0 &&
-		       		   		   $interval->h == 0 &&
-		       		   		   $interval->i == 0 &&
-		       		   		   $interval->s <= 59;
-						
-					}
-					// ELSE we're in the future
-					else{
-						
-						// unnecessary but good coding standards
-						$future = true;
+						return $difference->y == 0 && 
+		       		   		   $difference->m == 0 && 
+		       		   		   $difference->d == 0 &&
+		       		   		   $difference->h == 0 &&
+		       		   		   $difference->i == 0 &&
+		       		   		   $difference->s <= 59;
 						
 					}
 				}	
@@ -540,7 +538,7 @@ class Scheduled {
 	public function putTicketIntoDatabse(){
 		
 		// reference the email address
-		$email = $this->getUsername()."@example.com";
+		$email = $this->getUsername()."@buffalo.edu";
 		
 		// IF we can get the staff ID by username
 		if(Staff::isCreated($email)){
@@ -649,7 +647,7 @@ class Scheduled {
 					 ticket_id = ".db_input($id)."
 					,staff_id = ".db_input($this->getStaffId())."
 					,team_id = ".db_input($this->getTeamId())."
-					,dept_id = ".db_input(DEPT_ID)."
+					,dept_id = ".db_input(WEB_SERVICES_DEPT_ID)."
 					,topic_id = ".db_input($this->getTopicId())."
 					,state = 'created'
 					,staff = 'SYSTEM'
@@ -707,7 +705,7 @@ class Scheduled {
 		To view more about this ticket please click the following link:
 			
 		".HOME_URL."scp/tickets.php?id=".$id;
-		$from = "AutoTicketGenerator@example.com";
+		$from = "AutoTicketGenerator@buffalo.edu";
 				
 		// SWITCH on the notifications
 		switch($this->getNotifications()){
