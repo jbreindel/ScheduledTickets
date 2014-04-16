@@ -498,7 +498,7 @@ class Scheduled {
 					$difference = $now->diff($recurrance);
 					
 					// IF we past the date
-					if($difference->invert == 1){
+					if($difference->invert == 0){
 						
 						// return if the time is within the minute
 						return $difference->y == 0 && 
