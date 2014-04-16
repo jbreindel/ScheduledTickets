@@ -494,10 +494,6 @@ class Scheduled {
 					// difference between now and recurrance
 					$difference = $now->diff($recurrance);
 					
-					echo "<pre>";
-					print_r($difference);
-					echo "</pre>";
-					
 					// IF we're on the start date
 					if($this->withinMinute($difference)){
 						
@@ -614,7 +610,7 @@ class Scheduled {
 					".TICKET_TABLE."
 				SET
 					 ticketID = ".db_input(self::genExtRandID())."
-					,dept_id = ".db_input(DEPT_ID)."
+					,dept_id = ".db_input(WEB_SERVICES_DEPT_ID)."
 					,sla_id = ".db_input(SLA_ID)."
 					,priority_id = ".db_input($this->getPriorityId())."
 					,topic_id = ".db_input($this->getTopicId())."
